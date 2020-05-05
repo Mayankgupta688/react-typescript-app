@@ -6,4 +6,5 @@ export default interface IEmployeeData {
   designation: string;
   isManager: boolean;
   managerId: number;
+  avatar: string;
 }
