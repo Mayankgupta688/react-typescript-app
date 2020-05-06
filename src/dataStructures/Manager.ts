@@ -5,8 +5,8 @@ export default class Manager extends Employee<number, number> {
   private _teamSize: number;
   private _teamMembers: Employee<number, number>[];
 
-  constructor(name: string, age: number, isManager: boolean, salary: number) {
-    super(name, age, isManager, salary);
+  constructor(name: string, age: number, isManager: boolean, salary: number, id: number) {
+    super(name, age, isManager, salary, id);
     this._teamSize = 0
     this._teamMembers = [];
   }
