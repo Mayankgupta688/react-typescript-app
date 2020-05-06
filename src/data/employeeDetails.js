@@ -5,24 +5,24 @@ var employeeDetails = [{
   salary: 20000,
   designation: "Developer",
   isManager: true,
-  managerId: 0,
-  "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jagan123/128.jpg"
+  managerId: -1,
+  avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/jagan123/128.jpg"
 }, {
   id: 2,
   name: "Anshul Gupta",
   age: 20,
   salary: 20000,
   designation: "Developer",
-  isManager: false,
-  managerId: 1,
-  "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/chaabane_wail/128.jpg"
+  isManager: true,
+  managerId: -1,
+  avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/chaabane_wail/128.jpg"
 }, {
   id: 3,
   name: "Ankit Gupta",
   age: 20,
   salary: 20000,
   designation: "Developer",
-  isManager: true,
+  isManager: false,
   managerId: 1,
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/moscoz/128.jpg"
 }, {
@@ -31,8 +31,8 @@ var employeeDetails = [{
   age: 20,
   salary: 20000,
   designation: "Developer",
-  isManager: true,
-  managerId: 0,
+  isManager: false,
+  managerId: 2,
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/abdots/128.jpg"
 }, {
   id: 5,
@@ -49,7 +49,7 @@ var employeeDetails = [{
   age: 20,
   salary: 20000,
   designation: "Developer",
-  isManager: true,
+  isManager: false,
   managerId: 1,
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/g3d/128.jpg"
 }, {
@@ -58,7 +58,7 @@ var employeeDetails = [{
   age: 20,
   salary: 20000,
   designation: "Developer",
-  isManager: true,
+  isManager: false,
   managerId: 0,
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/aoimedia/128.jpg"
 }, {
@@ -76,7 +76,7 @@ var employeeDetails = [{
   age: 20,
   salary: 20000,
   designation: "Developer",
-  isManager: true,
+  isManager: false,
   managerId: 1,
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/danro/128.jpg" 
 }, {
@@ -85,7 +85,7 @@ var employeeDetails = [{
   age: 20,
   salary: 20000,
   designation: "Developer",
-  isManager: true,
+  isManager: false,
   managerId: 0,
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/s4f1/128.jpg"
 }, {
@@ -103,7 +103,7 @@ var employeeDetails = [{
   age: 20,
   salary: 20000,
   designation: "Developer",
-  isManager: true,
+  isManager: false,
   managerId: 1,
   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/dhoot_amit/128.jpg"
 }]
