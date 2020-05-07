@@ -116,6 +116,7 @@ class App extends React.Component <any, IContainerStateProps> {
             <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#addNewEmployee">
               <div className="card-body">
                   <div>
+
                     <div className="form-group">
                       <label>Employee Name</label>
                       <input type="text" id="name" value={this.state.newEmployeeDetails.name} onChange={this.updateNewEmployeeDetails} className="form-control" aria-describedby="emailHelp" />
@@ -142,8 +143,13 @@ class App extends React.Component <any, IContainerStateProps> {
 
                     <div className="row">
                       <div className="form-group col-6">
+
                         <label>Manager Id</label>
-                        <input type="number" id="managerId" value={this.state.newEmployeeDetails.managerId}  onChange={this.updateNewEmployeeDetails} className="form-control" />
+                        <select className="form-control" value={this.state.newEmployeeDetails.managerId} id="managerId" onChange={this.updateNewEmployeeDetails} >
+                          {this.state.managerList.map(manager => {
+                            return <option value={manager.id}>{manager.employeeName}</option>
+                          })}
+                        </select>
                       </div>
 
                       <div className="form-group col-6">
