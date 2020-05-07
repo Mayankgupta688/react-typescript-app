@@ -1,7 +1,8 @@
 import * as React from "react";
 import ManagingHeirarchy from "../dataStructures/ManagingHeirarchy";
 import IEmployeeData from "../dataStructures/IEmployeeData";
-import IContainerStateProps from "../dataStructures/IComponentInterfaces"
+import IContainerStateProps from "../dataStructures/IComponentInterfaces";
+import axios from "axios";
 
 
 class App extends React.Component <any, IContainerStateProps> {
@@ -193,13 +194,14 @@ class App extends React.Component <any, IContainerStateProps> {
                                   <div className="card-body">
                                     <div className="row">
                                       <div style={{paddingLeft: "80px", display: "inline-block"}}>
-                                        <img style={{height: "90px", width: "90px", "marginRight": "30px", position: "relative", top: "5px", display: "inline-block"}} src={team.avatar} alt={team.employeeName} />
+                                        <img style={{height: "190px", width: "190px", "marginRight": "30px", position: "relative", top: "5px", display: "inline-block"}} src={team.avatar} alt={team.employeeName} />
                                       </div>
                                       <div style={{paddingLeft: "30px", display: "inline-block"}}>
                                         <label><b>Employee Name:</b> {team.employeeName}</label><br/>
                                         <label style={{position: "relative"}}><b>Employee Salary:</b> {team.salary}</label><br/>
                                         <label style={{position: "relative"}}><b>Employee Id:</b> {team.id}</label><br/>
                                         <label style={{position: "relative"}}><b>Employee Designation:</b> {team.salary}</label><br/>
+                                        <label style={{position: "relative"}}><b>Employee Age:</b> {team.employeeAge}</label><br/>
                                         <button type="button" className="btn btn-danger" onClick={() => this.deleteEmployee(team)}>Delete</button>
                                       </div>
                                     </div>

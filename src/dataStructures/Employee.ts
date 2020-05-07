@@ -27,6 +27,14 @@ export default class Employee<T> implements IEmployee {
     return this._salary;
   }
 
+  set employeeAge(employeeAge: T) {
+    this._employeeAge = employeeAge
+  }
+
+  get employeeAge(): T {
+    return this._employeeAge;
+  }
+
   set avatar(_avatar: string) {
     this._avatar = _avatar
   }
