@@ -1,68 +1,198 @@
 import * as React from "react";
-import axios from "axios";
-import employeeDetails from "../data/employeeDetails";
-import EmployeeListing from "../dataStructures/EmployeeListing";
-import Manager from "../dataStructures/Manager";
+import ManagingHeirarchy from "../dataStructures/ManagingHeirarchy";
+import IEmployeeData from "../dataStructures/IEmployeeData";
+import ContainerStateProps from "../dataStructures/ComponentInterfaces"
 
-interface StateProps {
-  managerList: Manager[];
-}
 
-class App extends React.Component <any, StateProps> {
-  empListing: EmployeeListing;
+class App extends React.Component <any, ContainerStateProps> {
+  managingHeirarchy: ManagingHeirarchy;
+  newEmployeeDetails: IEmployeeData;
 
   constructor(props) {
     super(props);
-    this.empListing = new EmployeeListing();
+    this.managingHeirarchy = new ManagingHeirarchy();
+    this.deleteEmployee = this.deleteEmployee.bind(this);
+    this.addEmployee = this.addEmployee.bind(this);
+    this.updateNewEmployeeDetails = this.updateNewEmployeeDetails.bind(this);
+    this.filterEmployees = this.filterEmployees.bind(this);
+    this.updateFilterText = this.updateFilterText.bind(this);
+    
+    this.newEmployeeDetails = {
+      id: -1,
+      name: "",
+      age: 0,
+      salary: 0,
+      designation: "",
+      isManager: false,
+      managerId: -1,
+      avatar: ""
+    };
+
     this.state = {
-      managerList: this.empListing.getEmployeeHeirarchy(employeeDetails)
+      managerList: this.managingHeirarchy.getEmployeeHeirarchy(),
+      newEmployeeDetails: this.newEmployeeDetails,
+      filterEmployee: ""
     }
   }
 
-  componentDidMount() {
-    axios.get("").then(() => {
-      // Add code to retrieve data using Ajax...
+  deleteEmployee(empDetails) {
+    var updatedEmployeeList = this.managingHeirarchy.deleteEmployee(empDetails)
+    this.setState({
+      managerList: updatedEmployeeList
+    })
+  }
+
+  updateNewEmployeeDetails(event) {
+    this.setState({
+      newEmployeeDetails: {
+        ...this.state.newEmployeeDetails,
+        [event.target.id]: event.target.value
+      }
+    })
+  }
+
+  addEmployee() {
+    var data = this.managingHeirarchy.addEmployee(this.state.newEmployeeDetails);
+    console.dir(data)
+    this.setState({
+      managerList: data
+    })
+  }
+
+  updateFilterText(event) {
+    this.setState({
+      ...this.state,
+      filterEmployee: event.target.value
+    }, () => {
+      this.filterEmployees()
+    })
+  }
+
+  filterEmployees() {
+    this.setState({
+      ...this.state,
+      managerList: this.managingHeirarchy.filterEmployees(this.state.filterEmployee)
     })
   }
 
   render() {
     return (
       <div>
+
+        <div className="row" style={{marginLeft: "20px", marginTop: "20px"}}>
+
+          <div className="form-group col-4">
+            <label>Filter Employee:</label>
+            <input type="text" id="age" value={this.state.filterEmployee} onChange={this.updateFilterText} className="form-control" aria-describedby="emailHelp" />
+          </div><br/>
+
+        </div>
+        <div className="accordion" id="addNewEmployee" style={{marginBottom: "20px"}}>
+          <div className="card">
+            <div className="card-header" id="headingOne">
+              <h2 className="mb-0">
+                <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <b>Add New Employee</b>
+                </button>
+              </h2>
+            </div>
+
+            <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#addNewEmployee">
+              <div className="card-body">
+                  <div>
+                    <div className="form-group">
+                      <label>Employee Name</label>
+                      <input type="text" id="name" value={this.state.newEmployeeDetails.name} onChange={this.updateNewEmployeeDetails} className="form-control" aria-describedby="emailHelp" />
+                    </div>
+
+                    <div className="row">
+
+                      <div className="form-group col-4">
+                        <label>Employee Age</label>
+                        <input type="text" id="age" value={this.state.newEmployeeDetails.age}  onChange={this.updateNewEmployeeDetails} className="form-control" aria-describedby="emailHelp" />
+                      </div>
+
+                      <div className="form-group col-4">
+                        <label>Employee Salary</label>
+                        <input type="number" id="salary" value={this.state.newEmployeeDetails.salary} onChange={this.updateNewEmployeeDetails} className="form-control" />
+                      </div>
+
+                      <div className="form-group col-4">
+                        <label>Employee Designation</label>
+                        <input type="text" id="designation" value={this.state.newEmployeeDetails.designation} onChange={this.updateNewEmployeeDetails} className="form-control" />
+                      </div>
+
+                    </div>
+
+                    <div className="row">
+                      <div className="form-group col-6">
+                        <label>Manager Id</label>
+                        <input type="number" id="managerId" value={this.state.newEmployeeDetails.managerId}  onChange={this.updateNewEmployeeDetails} className="form-control" />
+                      </div>
+
+                      <div className="form-group col-6">
+                        <label>Employee Avatar</label>
+                        <input type="text" value={this.state.newEmployeeDetails.avatar}  id="avatar" onChange={this.updateNewEmployeeDetails} className="form-control"/>
+                      </div>
+                    </div>
+
+                    <button type="button" onClick={this.addEmployee} className="btn btn-primary">Submit</button>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="accordion" id="accordionExample">
           {this.state.managerList.map(manager => {
             return (
               <>
                 <div className="card">
-                  <div className="card-header" id="headingOne">
+                  <div className="card-header" id={"manager_" + manager.id}>
                     <h2 className="mb-0">
                       <button className="btn btn-link" type="button" data-toggle="collapse" data-target={"#emp_" + manager.id.toString()} aria-expanded="true" aria-controls="collapseOne">
                         <img style={{height: "50px", width: "50px", "marginRight": "30px", position: "relative", top: "20px"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/s4f1/128.jpg" alt="https://s3.amazonaws.com/uifaces/faces/twitter/s4f1/128.jpg"/>
-                        <label><b>Manager Name: </b>{manager.employeeName}</label><br/>
-                        <label style={{position: "relative", left: "-5px"}}><b>Employee Count:</b> {manager.teamMembers.length}</label>
+                        <label><b>Manager Name: </b>{manager.employeeName} (Id: {manager.id})</label><br/>
+                        <label style={{position: "relative", left: "-25px"}}><b>Employee Count:</b> {manager.teamMembers.length}</label>
                       </button>
                     </h2>
                   </div>
-
-                  
-
-                  <div id={"emp_" + manager.id.toString()} className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div className="card-body">
+                  <div id={"emp_" + manager.id.toString()} className="  show" aria-labelledby={"emp_" + manager.id} data-parent="#accordionExample">
+                    <div className="card-body" style={{paddingLeft: "2rem"}}>
+                      <div className="accordion" id={"accordion_" + manager.id}>
 
                       {manager.teamMembers.map(team => {
                         return (
                           <>
-                            <div className="row">
-                              <div className="col-1" style={{paddingLeft: "80px"}}>
-                                <img style={{height: "50px", width: "50px", "marginRight": "30px", position: "relative", top: "5px"}} src={team.avatar} alt={team.employeeName} />
+                              <div className="card">
+                                <div className="card-header" id={"employee_" + team.id}>
+                                  <h2 className="mb-0">
+                                    <button className="btn btn-link" type="button" data-toggle="collapse" data-target={"#emp_" + team.id.toString()} aria-expanded="true" aria-controls="collapseOne">
+                                      <label><b>Employee Name: </b>{team.employeeName} (Salary: {team.salary})</label><br/>
+                                    </button>
+                                  </h2>
+                                </div>
+
+                                <div id={"emp_" + team.id.toString()} className="collapse" aria-labelledby={"employee_" + team.id} data-parent={"#accordion_" + manager.id}>
+                                  <div className="card-body">
+                                    <div className="row">
+                                      <div className="col-1" style={{paddingLeft: "80px"}}>
+                                        <img style={{height: "50px", width: "50px", "marginRight": "30px", position: "relative", top: "5px"}} src={team.avatar} alt={team.employeeName} />
+                                      </div>
+                                      <div className="col-11">
+                                        <label><b>Employee Name:</b> {team.employeeName}</label><br/>
+                                        <label style={{position: "relative", left: "-3px"}}><b>Employee Salary:</b> {team.salary}</label><br/>
+                                        <button type="button" className="btn btn-danger" onClick={() => this.deleteEmployee(team)}>Delete</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                              <div className="col-11">
-                                <label><b>Employee Name:</b> {team.employeeName}</label><br/>
-                                <label style={{position: "relative", left: "-3px"}}><b>Employee Count:</b> 5</label>
-                              </div>
-                            </div><hr/>
                           </>
                         )
                       })}
+                      </div>
                     </div>
                   </div>
                 </div>

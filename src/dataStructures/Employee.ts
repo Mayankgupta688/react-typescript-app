@@ -59,7 +59,7 @@ export default class Employee<T, T1> implements IEmployee {
     return this._id;
   }
 
-  public getDetails(): string {
+  public getSalaryDetails(): string {
     return this._employeeName;
   }
 }
