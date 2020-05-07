@@ -1,15 +1,15 @@
 import IEmployee from "./IEmployee";
 
-export default class Employee<T, T1> implements IEmployee {
+export default class Employee<T> implements IEmployee {
   public _employeeName: string;
   public _employeeAge: T;
   public _isManager: boolean;
-  public _salary: T1;
+  public _salary: T;
   public _id: number;
   public _avatar: string;
-  public _teamMembers: Employee<number, number>[];
+  public _teamMembers: Employee<number>[];
 
-  constructor(name: string, age: T, isManager: boolean, salary: T1, id: number, avatar: string) {
+  constructor(name: string, age: T, isManager: boolean, salary: T, id: number, avatar: string) {
     this._employeeAge = age;
     this._employeeName = name;
     this._isManager = isManager;
@@ -19,11 +19,11 @@ export default class Employee<T, T1> implements IEmployee {
     this._avatar = avatar;
   }
 
-  set salary(salary: T1) {
+  set salary(salary: T) {
     this._salary = salary
   }
 
-  get salary(): T1 {
+  get salary(): T {
     return this._salary;
   }
 
@@ -47,11 +47,11 @@ export default class Employee<T, T1> implements IEmployee {
     this._id = id;
   }
 
-  get teamMembers(): Employee<number, number>[] {
+  get teamMembers(): Employee<number>[] {
     return this._teamMembers;
   }
 
-  set teamMembers(teamMembers: Employee<number, number>[]) {
+  set teamMembers(teamMembers: Employee<number>[]) {
     this._teamMembers = teamMembers;
   }
 
@@ -59,7 +59,7 @@ export default class Employee<T, T1> implements IEmployee {
     return this._id;
   }
 
-  public getSalaryDetails(): string {
-    return this._employeeName;
+  getSalaryDetails() {
+    return this._salary;
   }
 }

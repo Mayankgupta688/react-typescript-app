@@ -2,9 +2,10 @@ import Manager from "./Manager";
 import IEmployeeData from "./IEmployeeData";
 import Employee from "./Employee";
 import employeeDetails from "../data/employeeDetails";
+import IManagingHeirarchy from "../dataStructures/IManagingHeirarchy";
 
 
-class ManagingHeirarchy {
+class ManagingHeirarchy implements IManagingHeirarchy {
 
   public managerHierarchy: Manager[];
   public employeeList: IEmployeeData[];
@@ -50,7 +51,7 @@ class ManagingHeirarchy {
     return this.managerHierarchy;
   }
 
-  addEmployee(emp: IEmployeeData) {
+  addEmployee(emp: IEmployeeData): Manager[] {
 
     var maxValue = -1;
 
@@ -65,7 +66,7 @@ class ManagingHeirarchy {
     return this.getEmployeeHeirarchy()
   }
 
-  deleteEmployee(employeeDetails: IEmployeeData) {
+  deleteEmployee(employeeDetails: IEmployeeData): Manager[] {
     this.employeeList = this.employeeList.filter(emp => emp.id !== employeeDetails.id)
     return this.getEmployeeHeirarchy();
   }

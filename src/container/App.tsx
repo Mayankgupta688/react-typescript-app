@@ -1,10 +1,10 @@
 import * as React from "react";
 import ManagingHeirarchy from "../dataStructures/ManagingHeirarchy";
 import IEmployeeData from "../dataStructures/IEmployeeData";
-import ContainerStateProps from "../dataStructures/ComponentInterfaces"
+import IContainerStateProps from "../dataStructures/IComponentInterfaces"
 
 
-class App extends React.Component <any, ContainerStateProps> {
+class App extends React.Component <any, IContainerStateProps> {
   managingHeirarchy: ManagingHeirarchy;
   newEmployeeDetails: IEmployeeData;
 
@@ -35,6 +35,19 @@ class App extends React.Component <any, ContainerStateProps> {
     }
   }
 
+  resetEmployeeForm() {
+    this.newEmployeeDetails = {
+      id: -1,
+      name: "",
+      age: 0,
+      salary: 0,
+      designation: "",
+      isManager: false,
+      managerId: -1,
+      avatar: ""
+    };
+  }
+
   deleteEmployee(empDetails) {
     var updatedEmployeeList = this.managingHeirarchy.deleteEmployee(empDetails)
     this.setState({
@@ -55,7 +68,9 @@ class App extends React.Component <any, ContainerStateProps> {
     var data = this.managingHeirarchy.addEmployee(this.state.newEmployeeDetails);
     console.dir(data)
     this.setState({
-      managerList: data
+      managerList: data,
+      filterEmployee: "",
+      newEmployeeDetails: this.newEmployeeDetails
     })
   }
 
@@ -177,12 +192,14 @@ class App extends React.Component <any, ContainerStateProps> {
                                 <div id={"emp_" + team.id.toString()} className="collapse" aria-labelledby={"employee_" + team.id} data-parent={"#accordion_" + manager.id}>
                                   <div className="card-body">
                                     <div className="row">
-                                      <div className="col-1" style={{paddingLeft: "80px"}}>
-                                        <img style={{height: "50px", width: "50px", "marginRight": "30px", position: "relative", top: "5px"}} src={team.avatar} alt={team.employeeName} />
+                                      <div style={{paddingLeft: "80px", display: "inline-block"}}>
+                                        <img style={{height: "90px", width: "90px", "marginRight": "30px", position: "relative", top: "5px", display: "inline-block"}} src={team.avatar} alt={team.employeeName} />
                                       </div>
-                                      <div className="col-11">
+                                      <div style={{paddingLeft: "30px", display: "inline-block"}}>
                                         <label><b>Employee Name:</b> {team.employeeName}</label><br/>
-                                        <label style={{position: "relative", left: "-3px"}}><b>Employee Salary:</b> {team.salary}</label><br/>
+                                        <label style={{position: "relative"}}><b>Employee Salary:</b> {team.salary}</label><br/>
+                                        <label style={{position: "relative"}}><b>Employee Id:</b> {team.id}</label><br/>
+                                        <label style={{position: "relative"}}><b>Employee Designation:</b> {team.salary}</label><br/>
                                         <button type="button" className="btn btn-danger" onClick={() => this.deleteEmployee(team)}>Delete</button>
                                       </div>
                                     </div>
