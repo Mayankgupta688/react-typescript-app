@@ -183,10 +183,9 @@ class App extends React.Component <any, IContainerStateProps> {
                   <div id={"emp_" + manager.id.toString()} className="  show" aria-labelledby={"emp_" + manager.id} data-parent="#accordionExample">
                     <div className="card-body" style={{paddingLeft: "2rem"}}>
                       <div className="accordion" id={"accordion_" + manager.id}>
-
-                      {manager.teamMembers.map(team => {
-                        return (
-                          <>
+                        {manager.teamMembers.map(team => {
+                          return (
+                            <>
                               <div className="card">
                                 <div className="card-header" id={"employee_" + team.id}>
                                   <h2 className="mb-0">
@@ -214,9 +213,9 @@ class App extends React.Component <any, IContainerStateProps> {
                                   </div>
                                 </div>
                               </div>
-                          </>
-                        )
-                      })}
+                            </>
+                          )
+                        })}
                       </div>
                     </div>
                   </div>
