@@ -115,51 +115,51 @@ class App extends React.Component <any, IContainerStateProps> {
 
             <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#addNewEmployee">
               <div className="card-body">
-                  <div>
+                <div>
 
-                    <div className="form-group">
-                      <label>Employee Name</label>
-                      <input type="text" id="name" value={this.state.newEmployeeDetails.name} onChange={this.updateNewEmployeeDetails} className="form-control" aria-describedby="emailHelp" />
-                    </div>
-
-                    <div className="row">
-
-                      <div className="form-group col-4">
-                        <label>Employee Age</label>
-                        <input type="text" id="age" value={this.state.newEmployeeDetails.age}  onChange={this.updateNewEmployeeDetails} className="form-control" aria-describedby="emailHelp" />
-                      </div>
-
-                      <div className="form-group col-4">
-                        <label>Employee Salary</label>
-                        <input type="number" id="salary" value={this.state.newEmployeeDetails.salary} onChange={this.updateNewEmployeeDetails} className="form-control" />
-                      </div>
-
-                      <div className="form-group col-4">
-                        <label>Employee Designation</label>
-                        <input type="text" id="designation" value={this.state.newEmployeeDetails.designation} onChange={this.updateNewEmployeeDetails} className="form-control" />
-                      </div>
-
-                    </div>
-
-                    <div className="row">
-                      <div className="form-group col-6">
-
-                        <label>Manager Id</label>
-                        <select className="form-control" value={this.state.newEmployeeDetails.managerId} id="managerId" onChange={this.updateNewEmployeeDetails} >
-                          {this.state.managerList.map(manager => {
-                            return <option value={manager.id}>{manager.employeeName}</option>
-                          })}
-                        </select>
-                      </div>
-
-                      <div className="form-group col-6">
-                        <label>Employee Avatar</label>
-                        <input type="text" value={this.state.newEmployeeDetails.avatar}  id="avatar" onChange={this.updateNewEmployeeDetails} className="form-control"/>
-                      </div>
-                    </div>
-
-                    <button type="button" onClick={this.addEmployee} className="btn btn-primary">Submit</button>
+                  <div className="form-group">
+                    <label>Employee Name</label>
+                    <input type="text" id="name" value={this.state.newEmployeeDetails.name} onChange={this.updateNewEmployeeDetails} className="form-control" aria-describedby="emailHelp" />
                   </div>
+
+                  <div className="row">
+
+                    <div className="form-group col-4">
+                      <label>Employee Age</label>
+                      <input type="text" id="age" value={this.state.newEmployeeDetails.age}  onChange={this.updateNewEmployeeDetails} className="form-control" aria-describedby="emailHelp" />
+                    </div>
+
+                    <div className="form-group col-4">
+                      <label>Employee Salary</label>
+                      <input type="number" id="salary" value={this.state.newEmployeeDetails.salary} onChange={this.updateNewEmployeeDetails} className="form-control" />
+                    </div>
+
+                    <div className="form-group col-4">
+                      <label>Employee Designation</label>
+                      <input type="text" id="designation" value={this.state.newEmployeeDetails.designation} onChange={this.updateNewEmployeeDetails} className="form-control" />
+                    </div>
+
+                  </div>
+
+                  <div className="row">
+                    <div className="form-group col-6">
+
+                      <label>Manager Id</label>
+                      <select className="form-control" value={this.state.newEmployeeDetails.managerId} id="managerId" onChange={this.updateNewEmployeeDetails} >
+                        {this.state.managerList.map(manager => {
+                          return <option value={manager.id}>{manager.employeeName}</option>
+                        })}
+                      </select>
+                    </div>
+
+                    <div className="form-group col-6">
+                      <label>Employee Avatar</label>
+                      <input type="text" value={this.state.newEmployeeDetails.avatar}  id="avatar" onChange={this.updateNewEmployeeDetails} className="form-control"/>
+                    </div>
+                  </div>
+
+                  <button type="button" onClick={this.addEmployee} className="btn btn-primary">Submit</button>
+                </div>
 
               </div>
             </div>
