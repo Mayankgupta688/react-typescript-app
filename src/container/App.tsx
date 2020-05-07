@@ -169,8 +169,8 @@ class App extends React.Component <any, IContainerStateProps> {
                     <h2 className="mb-0">
                       <button className="btn btn-link" type="button" data-toggle="collapse" data-target={"#emp_" + manager.id.toString()} aria-expanded="true" aria-controls="collapseOne">
                         <img style={{height: "50px", width: "50px", "marginRight": "30px", position: "relative", top: "20px"}} src="https://s3.amazonaws.com/uifaces/faces/twitter/s4f1/128.jpg" alt="https://s3.amazonaws.com/uifaces/faces/twitter/s4f1/128.jpg"/>
-                        <label><b>Manager Name: </b>{manager.employeeName} (Id: {manager.id})</label><br/>
-                        <label style={{position: "relative", left: "-25px"}}><b>Employee Count:</b> {manager.teamMembers.length}</label>
+                        <label style={{color: "red"}}><b>Manager Name: </b>{manager.employeeName} (Id: {manager.id})</label><br/>
+                        <label style={{position: "relative", left: "-25px", color: "red"}}><b>Employee Count:</b> {manager.teamMembers.length}</label>
                       </button>
                     </h2>
                   </div>
