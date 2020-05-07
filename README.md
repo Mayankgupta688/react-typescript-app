@@ -4,6 +4,11 @@ The Application provides the following functionalities:
 
 1. Extract the list of 15 Employees
 2. Extract out the list of Managers from the List
+3. For Each Manager, find the list of Employees under each Manager
+4. Enable user to enter the employee under a specific manager using Manager Id
+5. User can filter the list of Employees under Manager from the Hierarchy
+6. Display basic details of Manager
+7. For each Manager, display the details of all employees.
 
 ## Available Scripts
 
