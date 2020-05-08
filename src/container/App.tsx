@@ -2,7 +2,6 @@ import * as React from "react";
 import ManagingHeirarchy from "../dataStructures/ManagingHeirarchy";
 import IEmployeeData from "../dataStructures/IEmployeeData";
 import IContainerStateProps from "../dataStructures/IComponentInterfaces";
-import axios from "axios";
 
 
 class App extends React.Component <any, IContainerStateProps> {
@@ -94,6 +93,14 @@ class App extends React.Component <any, IContainerStateProps> {
   render() {
     return (
       <div>
+
+        <div className="container-fluid">
+          <div className="row">
+            <div style={{backgroundColor: "rgb(223, 220, 220)", width: "100%", height: "80px", "paddingLeft": "20px", paddingTop: "10px"}}>
+              <h1>Employee Heirarchy Management</h1>
+            </div>
+          </div>
+        </div>
 
         <div className="row" style={{marginLeft: "20px", marginTop: "20px"}}>
 
